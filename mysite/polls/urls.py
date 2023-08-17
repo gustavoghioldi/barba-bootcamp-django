@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from polls import views
-
+from polls.view_classes import TestView, DetailView
 app_name="polls"
 
 urlpatterns = [
@@ -27,4 +27,7 @@ urlpatterns = [
     path("<int:question_id>/results/", views.results, name="results"),
     # ex: /polls/5/vote/
     path("<int:question_id>/vote/", views.vote, name="vote"),
+    path("test/", TestView.as_view(), name="test"),
+    path("test/<int:pk>/", DetailView.as_view(), name="test_details"),
+    path("form/", views.detail_form, name="form"),
 ]
